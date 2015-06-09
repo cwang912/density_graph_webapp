@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Population graph{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Population density vs. distance graph</h1>
+</div>
+<div class="row">
+<div class= "col-md-6">
+  <p> Density of census tracts are used. Distances are calculated by the centroid of the census tract and the geolocation of your input. Red line represents a fit lowess model.</p>
+  {{ wtf.quick_form(form, form_type="basic") }}
+</div>
+</div>
+
+{% if name %}
+<div class="row">
+<div class="col-md-8">
+<img src="{{ url_for('fig', place = name) }}" alt="Image Placeholder" width="100%">
+</div>
+</div>
+{% endif %}
+
+
+{% endblock %}
